@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Clock"
+        android:id="@+id/clock"
+        />
+    <item
+        android:id="@+id/alarm"
+        android:title="Alarm"
+        />
+    <item
+        android:title="timer"
+        android:id="@+id/Timer"
+        />
+
+    <item
+        android:title="StopWatch"
+        android:id="@+id/stopWatch"
+        />
+</menu>
