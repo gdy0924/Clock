@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Clock"
+        android:title="时钟"
         android:id="@+id/clock"
+        android:icon="@drawable/newshizhong"
         />
     <item
+        android:icon="@drawable/newnaozhong"
         android:id="@+id/alarm"
-        android:title="Alarm"
+        android:title="闹钟"
         />
     <item
-        android:title="timer"
+        android:icon="@drawable/newdaojishi"
+        android:title="倒计时"
         android:id="@+id/Timer"
         />
 
     <item
-        android:title="StopWatch"
+        android:icon="@drawable/newjishiqi"
+        android:title="计时器"
         android:id="@+id/stopWatch"
         />
 </menu>

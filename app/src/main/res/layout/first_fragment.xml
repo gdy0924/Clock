@@ -34,26 +34,26 @@
         android:textSize="50sp"
         tools:targetApi="jelly_bean_mr1"/>
 
-    <Button
+<!--    <Button-->
 
-        android:id="@+id/ok"
+<!--        android:id="@+id/ok"-->
 
-        android:layout_width="wrap_content"
+<!--        android:layout_width="wrap_content"-->
 
-        android:layout_height="wrap_content"
+<!--        android:layout_height="wrap_content"-->
 
-        android:layout_marginTop="25dp"
+<!--        android:layout_marginTop="25dp"-->
 
-        android:text="单击我" />
+<!--        android:text="单击我" />-->
 
 
 
-    <Chronometer
+<!--    <Chronometer-->
 
-        android:id="@+id/test"
+<!--        android:id="@+id/test"-->
 
-        android:layout_width="wrap_content"
+<!--        android:layout_width="wrap_content"-->
 
-        android:layout_height="wrap_content"/>
+<!--        android:layout_height="wrap_content"/>-->
 
 </LinearLayout>

@@ -47,78 +47,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         initFragment();
-        //获取计时器组件
 
-     //   final Chronometer ch = (Chronometer)findViewById(R.id.test);
-
-//        TextClock mTextClock = (TextClock)findViewById(R.id.textclock);
-//        // 设置12时制显示格式
-//        mTextClock.setFormat12Hour("EEEE, MMMM dd, yyyy h:mmaa");
-//        // 设置24时制显示格式
-//        mTextClock.setFormat24Hour("yyyy-MM-dd hh:mm, EEEE");
-
-
-
-        //获取开始按钮
-
-//        Button start =(Button)findViewById(R.id.ok);
-//
-//        start.setOnClickListener(new View.OnClickListener()
-//
-//        {
-//
-//            @Override
-//
-//            public void onClick(View source)
-//
-//            {
-//
-//                //设置开始时间
-//
-//                ch.setBase(SystemClock.elapsedRealtime());
-//
-//                //启动计时器
-//
-//                ch.start();
-//
-//            }
-//
-//        });
-//
-//        ch.setOnChronometerTickListener(new OnChronometerTickListener()
-//
-//        {
-//
-//            public void OnChronometerTick(Chronometer ch)
-//
-//            {
-//
-//                if(SystemClock.elapsedRealtime() - ch.getBase() > 20*1000)
-//
-//                {
-//
-//                    ch.stop();
-//
-//                }
-//
-//            }
-//
-//            @Override
-//
-//            public void onChronometerTick(Chronometer arg0) {
-//
-//                // TODO Auto-generated method stub
-//
-//            }
-//
-//        });
-//
   }
     private void initFragment()    {
          clockFragment = new ClockFragment();
@@ -129,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         lastfragment=0;
         getSupportFragmentManager().beginTransaction().replace(R.id.mainview,clockFragment).show(clockFragment).commit();
         BottomNavigationView bottomNavigationView=(BottomNavigationView)findViewById(R.id.bnv);
-        bottomNavigationView.setOnNavigationItemSelectedListener(changeFragment);    }
+        bottomNavigationView.setOnNavigationItemSelectedListener(changeFragment);
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener changeFragment= new BottomNavigationView.OnNavigationItemSelectedListener()
     {        @Override
@@ -153,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         return true;
                     }
-                    case R.id.timer:
+                    case R.id.Timer:
                         {
                             if(lastfragment!=2)
                             {

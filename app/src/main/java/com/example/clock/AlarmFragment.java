@@ -26,7 +26,7 @@ public class AlarmFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view=inflater.inflate(R.layout.first_fragment,container,false);
+        View view=inflater.inflate(R.layout.second_fragment,container,false);
         return view;
     }
     @Override

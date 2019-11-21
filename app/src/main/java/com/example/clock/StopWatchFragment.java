@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 /**
@@ -16,6 +18,8 @@ import android.widget.TextView;
  */
 public class StopWatchFragment extends Fragment {
 
+
+    int second;
 
     public StopWatchFragment() {
         // Required empty public constructor
@@ -26,19 +30,96 @@ public class StopWatchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        View view=inflater.inflate(R.layout.first_fragment,container,false);
+        View view=inflater.inflate(R.layout.fourth_fragment,container,false);
         return view;
     }
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        textView=(TextView)getActivity().findViewById(R.id.textView1);
-//        button=(Button)getActivity().findViewById(R.id.button1);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override            public void onClick(View view) {
-//                Toast.makeText(getActivity(),"Fragment1",Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        final Chronometer ch = (Chronometer) getActivity().findViewById(R.id.jishi);
+        Button bn_start=(Button)getActivity().findViewById(R.id.start);
+        Button bn_stop=(Button)getActivity().findViewById(R.id.stop);
+        Button bn_pause=(Button)getActivity().findViewById(R.id.pause);
+        Button bn_reset=(Button)getActivity().findViewById(R.id.reset);
+
+        bn_pause.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                ch.stop();
+
+                ch.setText(FormatMiss(second));
+
+            }
+
+        });
+
+        bn_start.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                ch.start();
+
+            }
+
+        });
+
+        bn_reset.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                ch.stop();
+
+                second = 0;
+
+                ch.setText(FormatMiss(second));
+
+            }
+
+        });
+
+        ch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+
+
+
+            @Override
+
+            public void onChronometerTick(Chronometer chronometer) {
+
+                second++;
+
+                chronometer.setText(FormatMiss(second));
+
+            }
+
+        });
+    }
+
+
+    //格式转换为HH:MM:SS
+
+    public static String FormatMiss(int second) {
+
+        if (second == 0) {
+
+            return "00:00:00";
+
+        }
+
+        String hh = second / 3600 > 9 ? second / 3600 + "" : "0" + second / 3600;
+
+        String mm = (second % 3600) / 60 > 9 ? (second % 3600) / 60 + "" : "0" + (second % 3600) / 60;
+
+        String ss = (second % 3600) % 60 > 9 ? (second % 3600) % 60 + "" : "0" + (second % 3600) % 60;
+
+        return hh + ":" + mm + ":" + ss;
+
     }
 
 }
