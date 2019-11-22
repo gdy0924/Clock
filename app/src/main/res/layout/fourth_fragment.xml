@@ -12,16 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_start"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:src="@drawable/pause"-->
-    <!--        />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,14 +31,19 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/stop"
-            android:text="停止"/>
+            android:id="@+id/jici"
+            android:text="计次"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/reset"
             android:text="复位"/>
 
+
     </LinearLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timelist"/>
 
 </LinearLayout>

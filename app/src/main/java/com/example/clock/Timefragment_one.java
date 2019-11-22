@@ -34,10 +34,14 @@ public class Timefragment_one extends Fragment {
 
     ArrayList<Integer> list;
 
+    //Button bn;
+
     int curhour,curminute,cursecond,total;
     public Timefragment_one() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -51,10 +55,9 @@ public class Timefragment_one extends Fragment {
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        np1 = (NumberPicker) getActivity().findViewById(R.id.hournumber);
-        np2 = (NumberPicker) getActivity().findViewById(R.id.minutenumber);
-        np3 = (NumberPicker) getActivity().findViewById(R.id.secondnumber);
+        np1 = (NumberPicker) getView().findViewById(R.id.hournumber);
+        np2 = (NumberPicker) getView().findViewById(R.id.minutenumber);
+        np3 = (NumberPicker) getView().findViewById(R.id.secondnumber);
         np1.setMaxValue(24);
         np1.setMinValue(0);
         np2.setMaxValue(60);
@@ -88,15 +91,6 @@ public class Timefragment_one extends Fragment {
                 cursecond = newVal;
             }
         });
-
-        Timefragment_one f1=new Timefragment_one();
-        list= new ArrayList<Integer>();
-        list.add(curhour);
-        list.add(curminute);
-        list.add(cursecond);
-        Bundle bundle = new Bundle();
-        bundle.putIntegerArrayList("key", list);
-        f1.setArguments(bundle);
     }
 
 }

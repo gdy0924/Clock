@@ -15,4 +15,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/jishifuwei"
         android:text="复位"/>
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"/>
 </LinearLayout>

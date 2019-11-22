@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -38,9 +40,10 @@ public class StopWatchFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         final Chronometer ch = (Chronometer) getActivity().findViewById(R.id.jishi);
         Button bn_start=(Button)getActivity().findViewById(R.id.start);
-        Button bn_stop=(Button)getActivity().findViewById(R.id.stop);
+        Button bn_jici=(Button)getActivity().findViewById(R.id.jici);
         Button bn_pause=(Button)getActivity().findViewById(R.id.pause);
         Button bn_reset=(Button)getActivity().findViewById(R.id.reset);
+
 
         bn_pause.setOnClickListener(new View.OnClickListener() {
 
@@ -79,6 +82,17 @@ public class StopWatchFragment extends Fragment {
                 second = 0;
 
                 ch.setText(FormatMiss(second));
+
+            }
+
+        });
+
+        bn_jici.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
 
             }
 
