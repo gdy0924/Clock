@@ -5,9 +5,21 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/daojishi"
         android:layout_gravity="center"
         android:textSize="100dp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zantingjishi"
+        android:text="暂停"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jishifuwei"
+        android:text="复位"/>
+
 </LinearLayout>

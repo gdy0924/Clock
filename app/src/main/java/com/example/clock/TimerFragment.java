@@ -1,7 +1,9 @@
 package com.example.clock;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -36,20 +38,24 @@ public class TimerFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private int lastfragment;
+   // private int lastfragment;
 
 
-    NumberPicker n1;
-    NumberPicker n2;
-    NumberPicker n3;
+    NumberPicker np1;
+    NumberPicker np2;
+    NumberPicker np3;
+    int curhour,curminute,cursecond,total;
 
-    Timefragment_one f1=new Timefragment_one();
-    Timefragment_two f2=new Timefragment_two();
-    Timefragment_three f3=new Timefragment_three();
+  //  CallBackValue callBackValue;
 
-    int a;
 
-    private Fragment[] fs;
+//    @Override	public void onAttach(Activity activity) {
+//        // TODO Auto-generated method stub
+//        super.onAttach(activity);
+//        //当前fragment从activity重写了回调接口  得到接口的实例化对象
+//        callBackValue =(CallBackValue) getActivity();
+//    }
+
 
 
     @Override
@@ -63,24 +69,43 @@ public class TimerFragment extends Fragment {
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initFragment();
+        //initFragment();
 
-        n1=(NumberPicker)getView().findViewById(R.id.hournumber) ;
-        n2=(NumberPicker)getView().findViewById(R.id.minutenumber) ;
-        n3=(NumberPicker)getView().findViewById(R.id.secondnumber) ;
+        np1=(NumberPicker)getView().findViewById(R.id.hournumber) ;
+        np2=(NumberPicker)getView().findViewById(R.id.minutenumber) ;
+        np3=(NumberPicker)getView().findViewById(R.id.secondnumber) ;
 
-         final EditText text=(EditText)getView().findViewById(R.id.text) ;
+        init();
+
         Button bn_start=(Button)getActivity().findViewById(R.id.jishikaishi) ;
         Button bn_reset=(Button)getActivity().findViewById(R.id.jishifuwei) ;
 
         bn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(lastfragment!=1)
-                {
-                    switchFragment(lastfragment,1);
-                    lastfragment=1;
-                }
+//                if(lastfragment!=1)
+//                {
+//                    switchFragment(lastfragment,1);
+//                    lastfragment=1;
+//                }
+
+//                Intent intent = new Intent(getActivity(),AnotherTimeFragment.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("key", 30000+"");
+//                intent.putExtras(bundle);
+//                getActivity().startActivity(intent);
+  //              callback.getResult(30000+"");
+
+    //            Intent intent=new Intent(getActivity(),AnotherTimeFragment.class);
+                //intent.putExtra("time",30000+"");
+  //              startActivity(intent);
+
+                Intent intent=new Intent();
+                intent.setClass(getActivity(), AnotherTimeFragment.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("time",30000+"");
+                intent.putExtras(bundle);
+                startActivity(intent);
 
             }
         });
@@ -88,29 +113,55 @@ public class TimerFragment extends Fragment {
         bn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(lastfragment!=0)
-                {
-                    switchFragment(lastfragment,0);
-                    lastfragment=0;
-                }
+//                if(lastfragment!=0)
+//                {
+//                    switchFragment(lastfragment,0);
+//                    lastfragment=0;
+//                }
+                np1.setValue(0);
+                np2.setValue(0);
+                np3.setValue(0);
             }
         });
 
     }
-    private void initFragment(){
-        fs = new Fragment[]{f1,f3};
-        lastfragment=0;
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.timer_one,f1).show(f1).commit();
+
+    public void init(){
+        np1.setMaxValue(24);
+        np1.setMinValue(0);
+        np2.setMaxValue(60);
+        np2.setMinValue(0);
+        np3.setMaxValue(60);
+        np3.setMinValue(0);
+        curhour = 0;
+        curminute = 0;
+        cursecond = 0;
+        np1.setValue(curhour);
+        np2.setValue(curminute);
+        np3.setValue(cursecond);
+
+        np1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                curhour = newVal;
+            }
+        });
+
+        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                curminute = newVal;
+            }
+        });
+
+        np3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                cursecond = newVal;
+            }
+        });
     }
 
 
-    private void switchFragment(int lastfragment,int index)    {
-        FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.hide(fs[lastfragment]);//隐藏上个Fragment
-        if(fs[index].isAdded()==false)        {
-            transaction.add(R.id.mainview,fs[index]);
-        }
-        transaction.show(fs[index]).commitAllowingStateLoss();
-    }
 
 }

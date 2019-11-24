@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,11 +39,8 @@ public class AlarmFragment extends Fragment {
     public static List<Clock> list = new ArrayList<>();
     public static TimeAdapter timeAdapter;
     RecyclerView recyclerView;
-//    NavigationView navigationView;
-//    DrawerLayout drawerLayout;
-//    private ImageView more;
     TextView title;
-    Context context = getActivity();
+//    Context context = getActivity();
 
     public AlarmFragment() {
         // Required empty public constructor
@@ -63,7 +61,7 @@ public class AlarmFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        timeAdapter = new TimeAdapter(list, context);
+        timeAdapter = new TimeAdapter(list, getActivity());
         recyclerView.setAdapter(timeAdapter);
         list.clear();
         List<Clock> list1 = DataSupport.findAll(Clock.class);
@@ -84,10 +82,18 @@ public class AlarmFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         title = getActivity().findViewById(R.id.title);
+        Button bn_add=(Button)getActivity().findViewById(R.id.add);
         recyclerView = getActivity().findViewById(R.id.clock_list);
         initTitle();
         LitePal.getDatabase();
         initRecyclerView();
+        bn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getActivity(), AddClock.class);
+                startActivity(intent1);
+            }
+        });
     }
 
 }

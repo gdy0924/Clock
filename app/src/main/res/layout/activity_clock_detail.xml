@@ -41,7 +41,7 @@
         <Button
             android:id="@+id/set_time"
             android:text="设置时间"
-            android:background="@drawable/button_shape"
+            android:background="#000000"
             android:textColor="#fff"
             android:textSize="18sp"
             android:layout_alignParentRight="true"
@@ -53,33 +53,37 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="38dp"
+    android:layout_marginTop="38dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginLeft="5dp"
+        android:text="备注"
+        android:textSize="20sp"
+        android:id="@+id/beizhu"/>
+
+    <EditText
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="标签"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
 
-    </LinearLayout>
+</LinearLayout>
+
+
     <Button
         android:id="@+id/save"
         android:text="保存"
         android:textSize="20sp"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:background="@drawable/button_shape"
+        android:background="#000000"
         android:layout_marginTop="35dp"
         android:layout_gravity="center"
         android:layout_marginLeft="35dp"
@@ -96,7 +100,7 @@
         android:textSize="20sp"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:background="@drawable/button_shape"
+        android:background="#000000"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

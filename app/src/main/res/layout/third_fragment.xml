@@ -1,21 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/timer_one"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+        <NumberPicker
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/hournumber"/>
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/timer_two"
-        class="com.example.clock.Timefragment_two"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时"
+            android:id="@+id/hour"
+            android:textSize="30dp"
+            android:layout_gravity="center"/>
+
+        <NumberPicker
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/minutenumber"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分"
+            android:id="@+id/minute"
+            android:textSize="30dp"
+            android:layout_gravity="center"/>
+
+        <NumberPicker
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/secondnumber"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="秒"
+            android:textSize="30dp"
+            android:id="@+id/second"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jishikaishi"
+        android:text="开始"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jishifuwei"
+        android:text="复位"/>
+
+
+
 </LinearLayout>

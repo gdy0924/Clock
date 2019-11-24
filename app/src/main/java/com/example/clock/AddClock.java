@@ -1,12 +1,9 @@
 package com.example.clock;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-import javax.security.auth.login.LoginException;
 
 import static com.example.clock.AlarmFragment.list;
 import static com.example.clock.AlarmFragment.timeAdapter;
@@ -34,8 +30,10 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
     private EditText content;
     private Button set;
     private Button save;
+    private Button choice;
     private ImageView back;
     private TextView title;
+    private EditText editText;
     String hourformat;
     String minuteformat;
     Clock clock = new Clock();
@@ -51,6 +49,8 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
         set = findViewById(R.id.set_time);
         set.setOnClickListener(this);
         save = findViewById(R.id.save);
+        choice=findViewById(R.id.xuanzelingsheng);
+        choice.setOnClickListener(this);
         back = findViewById(R.id.open_nav);
         back.setImageResource(R.drawable.ic_back);
         back.setOnClickListener(this);
@@ -58,7 +58,16 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
         title.setText("添加闹钟");
         save.setOnClickListener(this);
         calendar = Calendar.getInstance();
+        editText=findViewById(R.id.lingsheng);
 
+
+        Intent intent = getIntent();
+        String lingsheng = intent.getStringExtra("lingsheng");
+        String h=intent.getStringExtra("hours");
+        String m=intent.getStringExtra("minutes");
+        show_hour.setText(h);
+        show_minute.setText(m);
+        editText.setText(lingsheng);
     }
 
     @Override
@@ -87,6 +96,12 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
 
                     }
                 }, mhour, mminute, true).show();
+                break;
+            case R.id.xuanzelingsheng:
+                Intent intent1=new Intent(AddClock.this,Lingsheng.class);
+                intent1.putExtra("hour",show_hour.getText()+"");
+                intent1.putExtra("minute",show_minute.getText()+"");
+                startActivity(intent1);
                 break;
             case R.id.save:
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);

@@ -3,15 +3,23 @@
     package="com.example.clock">
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClockDetail"></activity>
+        <activity android:name=".Lingsheng"></activity>
+        <activity android:name=".AnotherTimeFragment" />
+        <activity android:name=".ClockDetail" />
         <activity android:name=".AlarmAlert" />
         <activity android:name=".AddClock" />
+
+        <receiver
+            android:name=".CallAlarm"
+            android:process=".remote" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
