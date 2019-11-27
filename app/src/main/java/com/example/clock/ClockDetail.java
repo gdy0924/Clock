@@ -137,10 +137,10 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.delete:
                 clock.delete();
+                list.remove(clock);
                 timeAdapter.notifyDataSetChanged();
                 Intent intent1 = new Intent(context, CallAlarm.class);
-                PendingIntent sender1=PendingIntent.getBroadcast(
-                        context,0, intent1, 0);
+                PendingIntent sender1=PendingIntent.getBroadcast(context,0, intent1, 0);
                 am =(AlarmManager)context.getSystemService(ALARM_SERVICE);
                 am.cancel(sender1);
                 finish();

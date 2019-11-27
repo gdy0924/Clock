@@ -16,11 +16,12 @@ public class Lingsheng extends AppCompatActivity {
     private ListView list;
     ListAdapter adapter;
 
-    Intent intent=getIntent();
-    String hours=intent.getStringExtra("hour");
-    String minutes=intent.getStringExtra("minute");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent=getIntent();
+        final String hours=intent.getStringExtra("hour");
+        final String minutes=intent.getStringExtra("minute");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lingsheng);
 
@@ -35,9 +36,14 @@ public class Lingsheng extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Lingsheng.this, AddClock.class);
                 intent.putExtra("lingsheng", filename[position]);
-                intent.putExtra("hours",hours);
-                intent.putExtra("minutes",minutes);
+                intent.putExtra("hours", hours);
+                intent.putExtra("minutes", minutes);
+                intent.putExtra("flag","hhh");
+  //              finish();
+//                intent.putExtra("hours",hours);
+//                intent.putExtra("minutes",minutes);
                 startActivity(intent);
+                finish();
             }
         });
 

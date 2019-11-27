@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         >
@@ -52,16 +52,18 @@
             android:layout_gravity="center"/>
     </LinearLayout>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:id="@+id/jishikaishi"
-        android:text="开始"/>
+        android:text="开始"
+        android:layout_gravity="center"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:id="@+id/jishifuwei"
-        android:text="复位"/>
+        android:text="复位"
+        android:layout_gravity="center"/>
 
 
 

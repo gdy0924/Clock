@@ -17,6 +17,7 @@ public class AnotherTimeFragment extends AppCompatActivity {
     Button bn_zanting;
     Button bn_fuwei;
     TextView daojishi;
+    TimerFragment f1;
 
 //    Intent intent = getIntent();
 //    String position = intent.getStringExtra("key");
@@ -25,15 +26,20 @@ public class AnotherTimeFragment extends AppCompatActivity {
 //    String time=intent.getStringExtra("time");
 //    int a=Integer.parseInt(time);
 
-//    Intent intent=getIntent();
+
 //
-//    Bundle bundle = intent.getExtras();
-//
-//    String name=bundle.getString("time");
-//    int a=Integer.parseInt(name);
+//    int id = intent.getIntExtra("fragid",-1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent=getIntent();
+
+        Bundle bundle = intent.getExtras();
+
+        String name=bundle.getString("time");
+        String flag=bundle.getString("flag");
+        int a=Integer.parseInt(name);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_fragment_three);
 
@@ -41,7 +47,7 @@ public class AnotherTimeFragment extends AppCompatActivity {
         bn_fuwei=(Button)findViewById(R.id.jishifuwei);
         daojishi=(TextView)findViewById(R.id.daojishi);
 
-        new Couterdown(30000,1000){
+        new Couterdown(a,1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 daojishi.setText(toClock(millisUntilFinished));
@@ -55,8 +61,15 @@ public class AnotherTimeFragment extends AppCompatActivity {
         bn_fuwei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AnotherTimeFragment.this,TimerFragment.class);
-                startActivity(intent);
+                //Intent intent=new Intent(AnotherTimeFragment.this,TimerFragment.class);
+
+//                startActivity(intent);
+                finish();
+//                if(id > 0) {
+//                    if(id == id)
+//                        new TimerFragment()
+//
+//                }
 
             }
         });

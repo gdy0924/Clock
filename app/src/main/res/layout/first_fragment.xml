@@ -27,7 +27,7 @@
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:format12Hour="yyyy年MM月dd EEEE\naa hh:mm:ss"
+        android:format12Hour="yyyy年MM月dd\n EEEE\naa hh:mm:ss"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="normal"
         android:fontFamily="sans-serif-light"

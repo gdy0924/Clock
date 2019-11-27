@@ -41,6 +41,11 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        String lingsheng = intent.getStringExtra("lingsheng");
+        String h=intent.getStringExtra("hours");
+        String m=intent.getStringExtra("minutes");
+        String flag=intent.getStringExtra("flag");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_clock);
         show_hour = findViewById(R.id.hour);
@@ -61,13 +66,11 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
         editText=findViewById(R.id.lingsheng);
 
 
-        Intent intent = getIntent();
-        String lingsheng = intent.getStringExtra("lingsheng");
-        String h=intent.getStringExtra("hours");
-        String m=intent.getStringExtra("minutes");
-        show_hour.setText(h);
-        show_minute.setText(m);
-        editText.setText(lingsheng);
+//            show_hour.setText(h);
+//            show_minute.setText(m);
+            editText.setText(lingsheng);
+
+
     }
 
     @Override
@@ -105,8 +108,7 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.save:
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
-                PendingIntent sender = PendingIntent.getBroadcast(
-                        AddClock.this, 0, intent, 0);
+                PendingIntent sender = PendingIntent.getBroadcast(AddClock.this, 0, intent, 0);
                 AlarmManager am;
                 am = (AlarmManager) getSystemService(ALARM_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -121,7 +123,7 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                 clock.setMinute(minuteformat);
                 clock.setContent("" + content.getText().toString());
                 clock.setClockType(Clock.clock_open);
-                if (clock.getHour()!=null&&clock.getMinute()!=null) {
+                if (clock.getHour()!="00"&&clock.getMinute()!="00") {
                     clock.save();
                     list.add(clock);
                     timeAdapter.notifyDataSetChanged();

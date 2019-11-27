@@ -44,7 +44,7 @@ public class TimerFragment extends Fragment {
     NumberPicker np1;
     NumberPicker np2;
     NumberPicker np3;
-    int curhour,curminute,cursecond,total;
+    int curhour,curminute,cursecond,a,b,c,total;
 
   //  CallBackValue callBackValue;
 
@@ -75,7 +75,41 @@ public class TimerFragment extends Fragment {
         np2=(NumberPicker)getView().findViewById(R.id.minutenumber) ;
         np3=(NumberPicker)getView().findViewById(R.id.secondnumber) ;
 
-        init();
+       // init();
+        np1.setMaxValue(24);
+        np1.setMinValue(0);
+        np2.setMaxValue(60);
+        np2.setMinValue(0);
+        np3.setMaxValue(60);
+        np3.setMinValue(0);
+        np1.setValue(0);
+        np2.setValue(0);
+        np3.setValue(0);
+
+        np1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                curhour = newVal;
+                a=newVal;
+
+            }
+        });
+
+        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                curminute = newVal;
+                b=newVal;
+            }
+        });
+
+        np3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                cursecond = newVal;
+                c=newVal;
+            }
+        });
 
         Button bn_start=(Button)getActivity().findViewById(R.id.jishikaishi) ;
         Button bn_reset=(Button)getActivity().findViewById(R.id.jishifuwei) ;
@@ -100,10 +134,16 @@ public class TimerFragment extends Fragment {
                 //intent.putExtra("time",30000+"");
   //              startActivity(intent);
 
+//                System.out.println(a);
+//                System.out.println(curhour);
+               // b=np2.getValue();
+              //  c=np3.getValue();
+                total=(a*60*60+b*60+c)*1000;
                 Intent intent=new Intent();
                 intent.setClass(getActivity(), AnotherTimeFragment.class);
                 Bundle bundle=new Bundle();
-                bundle.putString("time",30000+"");
+                bundle.putString("time",total+"");
+                bundle.putString("flag","hhh");
                 intent.putExtras(bundle);
                 startActivity(intent);
 
@@ -124,42 +164,6 @@ public class TimerFragment extends Fragment {
             }
         });
 
-    }
-
-    public void init(){
-        np1.setMaxValue(24);
-        np1.setMinValue(0);
-        np2.setMaxValue(60);
-        np2.setMinValue(0);
-        np3.setMaxValue(60);
-        np3.setMinValue(0);
-        curhour = 0;
-        curminute = 0;
-        cursecond = 0;
-        np1.setValue(curhour);
-        np2.setValue(curminute);
-        np3.setValue(cursecond);
-
-        np1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                curhour = newVal;
-            }
-        });
-
-        np2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                curminute = newVal;
-            }
-        });
-
-        np3.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                cursecond = newVal;
-            }
-        });
     }
 
 
