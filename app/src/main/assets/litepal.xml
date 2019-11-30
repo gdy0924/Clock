@@ -3,8 +3,9 @@
     <dbname value = "Clock">
 
     </dbname>
-    <version value="5" />
+    <version value="6" />
     <list>
-        <mapping class="com.example.clock.Clock" />
+        <mapping class="com.example.clock.Clock"/>
+        <mapping class="com.example.clock.JiShi" />
     </list>
 </litepal>

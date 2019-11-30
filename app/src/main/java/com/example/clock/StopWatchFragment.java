@@ -2,12 +2,17 @@ package com.example.clock;
 
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +20,19 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.litepal.crud.DataSupport;
+
+import static com.example.clock.StopWatchFragment.list;
+import static com.example.clock.StopWatchFragment.adapter;
+
+
+import org.litepal.LitePal;
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +43,13 @@ import java.util.List;
 public class StopWatchFragment extends Fragment {
 
 
+    public static List<String> list = new ArrayList<>();
+    public static ListView listView;
     int second;
 
-    private ListView list;
-    ListAdapter adapter;
+    public static ArrayAdapter adapter;
+
+
 
 
 
@@ -51,41 +69,49 @@ public class StopWatchFragment extends Fragment {
         View view=inflater.inflate(R.layout.fourth_fragment,container,false);
         return view;
     }
+
+    private void initJiShiView() {
+
+
+        adapter = adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, list);
+        listView.setAdapter(adapter);
+        list.clear();
+
+        adapter.notifyDataSetChanged();
+    }
     @Override
     public void onActivityCreated( Bundle savedInstanceState) {
+
         super.onActivityCreated(savedInstanceState);
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        initView();
-//        setListener();
+
+
+
         final Chronometer ch = (Chronometer) getActivity().findViewById(R.id.jishi);
-        Button bn_start=(Button)getActivity().findViewById(R.id.start);
+
+        final Button bn_start=(Button)getActivity().findViewById(R.id.start);
         Button bn_jici=(Button)getActivity().findViewById(R.id.jici);
-        Button bn_pause=(Button)getActivity().findViewById(R.id.pause);
         Button bn_reset=(Button)getActivity().findViewById(R.id.reset);
-        list = (ListView)getActivity().findViewById(R.id.timelist);
+        listView = (ListView)getActivity().findViewById(R.id.timelist);
 
+        LitePal.getDatabase();
+       initJiShiView();
 
-        bn_pause.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-
-            public void onClick(View v) {
-
-                ch.stop();
-
-                ch.setText(FormatMiss(second));
-
-            }
-
-        });
 
         bn_start.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View v) {
+                if(bn_start.getText().equals("开始")){
+                    ch.start();
+                    bn_start.setText("暂停");
+                }else{
+                    ch.stop();
 
-                ch.start();
+                    ch.setText(FormatMiss(second));
+                    bn_start.setText("开始");
+                }
+
 
             }
 
@@ -102,7 +128,8 @@ public class StopWatchFragment extends Fragment {
                 second = 0;
 
                 ch.setText(FormatMiss(second));
-
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
 
         });
@@ -112,14 +139,11 @@ public class StopWatchFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                final String s=ch.getText().toString();
 
-                final String[] filename = {s};
+               final String s=ch.getText().toString();
 
-
-                    adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, filename);
-
-                    list.setAdapter(adapter);
+                list.add(s);
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -141,6 +165,9 @@ public class StopWatchFragment extends Fragment {
             }
 
         });
+
+
+
     }
 
 
@@ -163,6 +190,10 @@ public class StopWatchFragment extends Fragment {
         return hh + ":" + mm + ":" + ss;
 
     }
+
+
+
+
 
 
 }

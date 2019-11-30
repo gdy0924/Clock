@@ -53,9 +53,9 @@ public class AlarmFragment extends Fragment {
 
     }
 
-    private void initTitle() {
-        title.setText("你的闹钟");
-    }
+//    private void initTitle() {
+//        title.setText("你的闹钟");
+//    }
 
     private void initRecyclerView() {
 
@@ -84,7 +84,7 @@ public class AlarmFragment extends Fragment {
         title = getActivity().findViewById(R.id.title);
         Button bn_add=(Button)getActivity().findViewById(R.id.add);
         recyclerView = getActivity().findViewById(R.id.clock_list);
-        initTitle();
+       // initTitle();
         LitePal.getDatabase();
         initRecyclerView();
         bn_add.setOnClickListener(new View.OnClickListener() {
