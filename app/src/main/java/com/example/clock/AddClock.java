@@ -1,8 +1,11 @@
 package com.example.clock;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,17 +31,19 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
     private TextView show_hour;
     private TextView show_minute;
     private EditText content;
+    private EditText editText;
     private Button set;
     private Button save;
     private Button choice;
     private ImageView back;
     private TextView title;
-    private EditText editText;
+
     String hourformat;
     String minuteformat;
     Clock clock = new Clock();
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -51,6 +56,7 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
         show_hour = findViewById(R.id.hour);
         show_minute = findViewById(R.id.minute);
         content = findViewById(R.id.content);
+        editText=findViewById(R.id.lingsheng);
         set = findViewById(R.id.set_time);
         set.setOnClickListener(this);
         save = findViewById(R.id.save);
@@ -63,12 +69,12 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
         title.setText("添加闹钟");
         save.setOnClickListener(this);
         calendar = Calendar.getInstance();
-        editText=findViewById(R.id.lingsheng);
+    //    lingsheng=findViewById(R.id.lingsheng);
 
 
 //            show_hour.setText(h);
 //            show_minute.setText(m);
-            editText.setText(lingsheng);
+
 
 
     }
@@ -101,14 +107,27 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                 }, mhour, mminute, true).show();
                 break;
             case R.id.xuanzelingsheng:
-                Intent intent1=new Intent(AddClock.this,Lingsheng.class);
-                intent1.putExtra("hour",show_hour.getText()+"");
-                intent1.putExtra("minute",show_minute.getText()+"");
-                startActivity(intent1);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddClock.this);
+                builder.setTitle("铃声选择" +"");
+                //    指定下拉列表的显示数据
+                final String[] cities = {"ah", "boom", "millions","mola","zoo"};
+                //    设置一个下拉的列表选择项
+                builder.setItems(cities, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Toast.makeText(AddClock.this, "选择的铃声为：" + cities[which], Toast.LENGTH_SHORT).show();
+                        editText.setText(cities[which]);
+                    }
+                });
+                builder.show();
                 break;
             case R.id.save:
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
-                PendingIntent sender = PendingIntent.getBroadcast(AddClock.this, 0, intent, 0);
+                intent.putExtra("lingsheng",editText.getText().toString());
+                System.out.println(editText.getText().toString());
+                PendingIntent sender = PendingIntent.getBroadcast(AddClock.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager am;
                 am = (AlarmManager) getSystemService(ALARM_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -122,6 +141,7 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                 clock.setHour(hourformat);
                 clock.setMinute(minuteformat);
                 clock.setContent("" + content.getText().toString());
+                clock.setLingsheng(" "+editText.getText().toString());
                 clock.setClockType(Clock.clock_open);
                 if (clock.getHour()!="00"&&clock.getMinute()!="00") {
                     clock.save();

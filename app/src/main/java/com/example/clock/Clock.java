@@ -9,7 +9,16 @@ public class Clock extends DataSupport {
     String hour;
     String minute;
     String content;
+    String lingsheng;
     int  ClockType;
+
+    public String getLingsheng() {
+        return lingsheng;
+    }
+
+    public void setLingsheng(String lingsheng) {
+        this.lingsheng = lingsheng;
+    }
 
     public String getMinute() {
         return minute;

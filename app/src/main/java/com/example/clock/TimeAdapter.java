@@ -62,16 +62,19 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             viewHolder.minute.setTextColor(context.getResources().getColor(R.color.colorBlack));
             viewHolder.net.setTextColor(context.getResources().getColor(R.color.colorBlack));
             viewHolder.content.setTextColor(context.getResources().getColor(R.color.colorBlack));
+            viewHolder.lingsheng.setTextColor(context.getResources().getColor(R.color.colorBlack));
+
         }else if (clock.getClockType() == Clock.clock_close){
             viewHolder.aSwitch.setChecked(false);
             viewHolder.hour.setTextColor(context.getResources().getColor(R.color.colorGray));
             viewHolder.minute.setTextColor(context.getResources().getColor(R.color.colorGray));
             viewHolder.net.setTextColor(context.getResources().getColor(R.color.colorGray));
-            viewHolder.content.setTextColor(context.getResources().getColor(R.color.colorGray));
+           viewHolder.content.setTextColor(context.getResources().getColor(R.color.colorGray));
+            viewHolder.lingsheng.setTextColor(context.getResources().getColor(R.color.colorGray));
         }
         viewHolder.hour.setText(clock.getHour()+"");
         viewHolder.minute.setText(clock.getMinute()+"");
-
+        viewHolder.lingsheng.setText(clock.getLingsheng()+"");
         viewHolder.content.setText(clock.getContent());
         viewHolder.todetail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +99,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                     viewHolder.minute.setTextColor(context.getResources().getColor(R.color.colorBlack));
                     viewHolder.net.setTextColor(context.getResources().getColor(R.color.colorBlack));
                     viewHolder.content.setTextColor(context.getResources().getColor(R.color.colorBlack));
+                    viewHolder.lingsheng.setTextColor(context.getResources().getColor(R.color.colorBlack));
                     Intent intent = new Intent(context, CallAlarm.class);
                     PendingIntent sender = PendingIntent.getBroadcast(
                             context, 0, intent, 0);
@@ -134,6 +138,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
                     viewHolder.minute.setTextColor(context.getResources().getColor(R.color.colorGray));
                     viewHolder.net.setTextColor(context.getResources().getColor(R.color.colorGray));
                     viewHolder.content.setTextColor(context.getResources().getColor(R.color.colorGray));
+                    viewHolder.lingsheng.setTextColor(context.getResources().getColor(R.color.colorGray));
                 }
             }
         });
@@ -148,12 +153,14 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
         TextView hour;
         TextView minute;
         TextView content;
+        TextView lingsheng;
         TextView net;
         Switch aSwitch;
         LinearLayout todetail;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+           lingsheng=itemView.findViewById(R.id.lingsheng_item);
             hour = itemView.findViewById(R.id.hour);
             minute = itemView.findViewById(R.id.minute);
             net = itemView.findViewById(R.id.net);

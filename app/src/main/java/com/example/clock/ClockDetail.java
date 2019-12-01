@@ -30,6 +30,7 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
     private Calendar calendar;
     private TextView show_hour;
     private TextView show_minute;
+    private EditText lingsheng;
     private EditText content;
     private ImageView back;
     private TextView title;
@@ -49,6 +50,7 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
         show_hour = findViewById(R.id.hour);
         show_minute = findViewById(R.id.minute);
         content = findViewById(R.id.content);
+        lingsheng=findViewById(R.id.content1);
         set = findViewById(R.id.set_time);
         set.setOnClickListener(this);
         save = findViewById(R.id.save);
@@ -75,6 +77,7 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
             minuteformat = formatString(clock.getMinute());
         }
         content.setText(clock.getContent());
+        lingsheng.setText(clock.getLingsheng());
         show_hour.setText(clock.getHour() + "");
         show_minute.setText(clock.getMinute() + "");
     }
@@ -108,13 +111,14 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
                 clock.setHour(hourformat);
                 clock.setMinute(minuteformat);
                 clock.setContent("" + content.getText().toString());
+                clock.setLingsheng(" "+lingsheng.getText().toString());
                 clock.setClockType(Clock.clock_open);
                 clock.save();
                 Intent intent = new Intent(ClockDetail.this, CallAlarm.class);
                 // intent.putExtra("content",clock.getContent());
                 //sendBroadcast(intent);
                 PendingIntent sender = PendingIntent.getBroadcast(
-                        ClockDetail.this, 0, intent, 0);
+                        ClockDetail.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager am;
                 am = (AlarmManager) getSystemService(ALARM_SERVICE);
                 Log.e("gethour",clock.getHour());

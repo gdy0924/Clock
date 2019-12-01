@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lingsheng"></activity>
         <activity android:name=".AnotherTimeFragment" />
         <activity android:name=".ClockDetail" />
         <activity android:name=".AlarmAlert" />
