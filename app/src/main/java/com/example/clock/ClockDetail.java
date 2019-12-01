@@ -115,6 +115,7 @@ public class ClockDetail extends AppCompatActivity implements View.OnClickListen
                 clock.setClockType(Clock.clock_open);
                 clock.save();
                 Intent intent = new Intent(ClockDetail.this, CallAlarm.class);
+                intent.putExtra("lingsheng",clock.getLingsheng());
                 // intent.putExtra("content",clock.getContent());
                 //sendBroadcast(intent);
                 PendingIntent sender = PendingIntent.getBroadcast(

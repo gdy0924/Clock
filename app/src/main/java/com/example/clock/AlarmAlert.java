@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class AlarmAlert extends Activity {
-    private MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -20,20 +20,24 @@ public class AlarmAlert extends Activity {
         Bundle bundle = intent.getExtras();
 
         String lingsheng=bundle.getString("lingsheng2");
-        System.out.println(lingsheng);
+
         super.onCreate(savedInstanceState);
         int position = getIntent().getIntExtra("position",-1);
-        if(lingsheng.equals("ah")){
+
+        System.out.println(lingsheng);
+        if(lingsheng.contains("ah")){
+            System.out.println("hhhhhhhh");
             mediaPlayer = MediaPlayer.create(this,R.raw.ah);
-        }else if(lingsheng.equals("boom")){
+        } else if(lingsheng.contains("boom")){
             mediaPlayer = MediaPlayer.create(this,R.raw.boom);
-        }else if(lingsheng.equals("millions")){
+        }else if(lingsheng.contains("millions")){
             mediaPlayer = MediaPlayer.create(this,R.raw.millions);
-        }else if(lingsheng.equals("mola")){
+        }else if(lingsheng.contains("mola")){
             mediaPlayer = MediaPlayer.create(this,R.raw.mola);
-        }else if(lingsheng.equals("zoo")){
+        }else if(lingsheng.contains("zoo")){
             mediaPlayer = MediaPlayer.create(this,R.raw.zoo);
         }
+       // mediaPlayer = MediaPlayer.create(this,R.raw.ah);
         mediaPlayer.start();
         new AlertDialog.Builder(AlarmAlert.this)
                 .setIcon(R.drawable.newnaozhong)

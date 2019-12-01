@@ -124,9 +124,14 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                 builder.show();
                 break;
             case R.id.save:
+                clock.setHour(hourformat);
+                clock.setMinute(minuteformat);
+                clock.setContent("" + content.getText().toString());
+                clock.setLingsheng(" "+editText.getText().toString());
+                clock.setClockType(Clock.clock_open);
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
-                intent.putExtra("lingsheng",editText.getText().toString());
-                System.out.println(editText.getText().toString());
+                intent.putExtra("lingsheng",clock.getLingsheng());
+                System.out.println(clock.getLingsheng());
                 PendingIntent sender = PendingIntent.getBroadcast(AddClock.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager am;
                 am = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -138,11 +143,7 @@ public class AddClock extends AppCompatActivity implements View.OnClickListener 
                         am.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
                     }
                 }
-                clock.setHour(hourformat);
-                clock.setMinute(minuteformat);
-                clock.setContent("" + content.getText().toString());
-                clock.setLingsheng(" "+editText.getText().toString());
-                clock.setClockType(Clock.clock_open);
+
                 if (clock.getHour()!="00"&&clock.getMinute()!="00") {
                     clock.save();
                     list.add(clock);

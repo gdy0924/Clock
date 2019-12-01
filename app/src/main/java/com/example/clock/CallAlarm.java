@@ -10,7 +10,7 @@ public class CallAlarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String lingsheng=intent.getStringExtra("lingsheng");
-        System.out.println(lingsheng);
+      //  System.out.println(lingsheng);
 
 
         Intent intent1 = new Intent(context,AlarmAlert.class);
